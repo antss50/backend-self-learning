@@ -25,13 +25,31 @@ public class PaymentSystem {
         }
 
         System.out.println("Khach hang " + customers[0].getName() + " do nhan vien " + employees[0].getName() + " phu trach");
-        System.out.print("Khach hang " + customers[0].getName() + " ");
-        payments[0].pay(25000000.0);
-        System.out.println("Khach hang " + customers[1].getName() + " do nhan vien " + employees[1].getName() + " phu trach");
-        System.out.print("Khach hang " + customers[1].getName() + " ");
-        payments[1].pay(17500000.0);
-        System.out.println("Khach hang " + customers[2].getName() + " do nhan vien " + employees[2].getName() + " phu trach");
+        try {
+            System.out.print("Khach hang " + customers[0].getName() + " ");
+            payments[0].pay(-1);
+        } catch (Exception e) {
+            System.out.println("So tien thanh toan phai lon hon 0");
+        } finally {
+            System.out.println("Hoan thanh thu tuc cho khach hang " + customers[0].getName() + " ");
+        }
+            System.out.println("Khach hang " + customers[1].getName() + " do nhan vien " + employees[1].getName() + " phu trach");
+        try {
+            System.out.print("Khach hang " + customers[1].getName() + " ");
+            payments[1].pay(17500000.0);
+        } catch (PaymentException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Hoan thanh thu tuc cho khach hang " + customers[1].getName() + " ");
+        }
+            System.out.println("Khach hang " + customers[2].getName() + " do nhan vien " + employees[2].getName() + " phu trach");
+        try {
         System.out.print("Khach hang " + customers[2].getName() + " ");
-        payments[2].pay(1000000000.0);
+            payments[2].pay(1000000000.0);
+        } catch (PaymentException e) {
+            System.out.println("So tien thanh toan phai lon hon 0" + e.getMessage());
+        } finally {
+            System.out.println("Hoan thanh thu tuc cho khach hang " + customers[2].getName() + " ");
+        }
     }
 }
